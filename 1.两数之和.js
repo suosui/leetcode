@@ -64,8 +64,16 @@
  * @param {number} target
  * @return {number[]}
  */
-var twoSum = function(nums, target) {
-
-};
+let twoSum = (nums, target) => {
+  let targetMap = new Map();
+  let len = nums.length;
+  for (let i = 0; i < len; i++) {
+    const key = target - nums[i];
+    if (targetMap.has(key)) {
+      return [targetMap.get(key), i];
+    }
+    targetMap.set(nums[i], i);
+  }
+}
 // @lc code=end
 
