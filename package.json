@@ -1,0 +1,22 @@
+{
+  "name": "leetcode_answers",
+  "version": "1.0.0",
+  "description": "leetcode answers",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suosui/leetcode.git"
+  },
+  "keywords": [
+    "leetcode"
+  ],
+  "author": "suosui",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/suosui/leetcode/issues"
+  },
+  "homepage": "https://github.com/suosui/leetcode#readme"
+}
