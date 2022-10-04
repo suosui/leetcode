@@ -5,22 +5,24 @@
  */
 // @lc code=start
 function lengthOfLongestSubstring(s) {
-    var maxSubLength = 0;
-    var hasMap = new Map();
-    var left = 0;
-    var right = 0;
-    for (var i = 0; i < s.length; i++) {
-        var char = s[i];
+    let maxSubLength = 0;
+    const hasMap = new Map();
+    let left = 0;
+    let right = 0;
+    for (let i = 0; i < s.length; i++) {
+        let char = s[i];
         if (hasMap.has(char)) {
             const leftCharIdx = hasMap.get(char);
             if (maxSubLength < right - left) {
                 maxSubLength = right - left;
             }
-            // right = left = i;
-            left = leftCharIdx+1;
-            left = i - 1;
+            left = leftCharIdx + 1;
             right = i + 1;
-            hasMap.clear();
+            hasMap.forEach((value, key) => {
+                if (value < leftCharIdx + 1) {
+                    hasMap.delete(key);
+                }
+            })
             hasMap.set(char, i);
             continue;
         }
@@ -33,5 +35,4 @@ function lengthOfLongestSubstring(s) {
     return maxSubLength;
 }
 ;
-lengthOfLongestSubstring('abcabcbb')
 // @lc code=end
