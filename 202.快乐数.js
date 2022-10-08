@@ -81,7 +81,5 @@ var isHappy = function (n) {
         str = String(n);
     }
 };
-
-isHappy(19)
 // @lc code=end
 
