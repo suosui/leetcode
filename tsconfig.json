@@ -2,7 +2,7 @@
     "compileOnSave": false,
     "include": [
         "*"
-    ],
+, "subjects/*"    ],
     "exclude": [
         "node_modules"
     ],
