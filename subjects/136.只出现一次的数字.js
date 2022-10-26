@@ -37,22 +37,12 @@
  * @param {number[]} nums
  * @return {number}
  */
-var singleNumber = function (nums) {
-    const map = {};
-    const hash = new Map();
-    for (let num of nums) {
-        if (!hash.has(num)) {
-            hash.set(num, true);
-            map[num] = true;
-        } else {
-            map[num] = false;
-        }
+var singleNumber = function(nums) {
+    let ans = 0;
+    for(let num of nums){
+        ans = ans ^num;
     }
-    for (let key in map) {
-        if (map[key]) {
-            return key;
-        }
-    }
+    return ans;
 };
 // @lc code=end
 
