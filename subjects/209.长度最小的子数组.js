@@ -68,19 +68,25 @@
  * @param {number[]} nums
  * @return {number}
  */
-var minSubArrayLen = function (target, nums) {
-    let ans = [];
+var minSubArrayLen = function(target, nums) {
+    let ans = Math.pow(10, 5)+1;
     let l = r = 0;
     let sum = 0;
     while (l < nums.length && r < nums.length) {
         sum += nums[r];
         if (sum >= target) {
-            ans.push(r - l + 1);
+            let diff = r - l + 1;
+            if (diff < ans) {
+                ans = diff;
+            }
             while (l < r) {
                 sum -= nums[l];
                 l++;
                 if (sum >= target) {
-                    ans.push(r - l + 1);
+                    diff = r - l + 1;
+                    if (diff < ans) {
+                        ans = diff;
+                    }
                 } else {
                     break;
                 }
@@ -88,7 +94,7 @@ var minSubArrayLen = function (target, nums) {
         }
         r++;
     }
-    return ans.sort((a, b) => { return a - b })[0] || 0;
+    return ans === Math.pow(10, 5)+1 ? 0 : ans;
 };
 // @lc code=end
 
