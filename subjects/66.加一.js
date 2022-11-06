@@ -61,24 +61,38 @@
  * @return {number[]}
  */
 var plusOne = function (digits) {
-    let carry = true;
-    let i = digits.length - 1;
-    while (i > -1) {
-        if (!carry) break;
-        let sum = digits[i] + 1;
-        carry = false;
-        if (sum > 9) {
+    for (let i = digits.length - 1; i >= 0; i--) {
+        if (digits[i] === 9) {
             digits[i] = 0;
-            carry = true;
+            if (i === 0) digits.unshift(1);
         } else {
-            digits[i] = sum;
+            digits[i] += 1;
+            break;
         }
-        i--;
-    }
-    if(carry){
-        digits.unshift(1);
     }
     return digits;
-};
+}
+
+
+// var plusOne = function (digits) {
+//     let carry = true;
+//     let i = digits.length - 1;
+//     while (i > -1) {
+//         if (!carry) break;
+//         let sum = digits[i] + 1;
+//         carry = false;
+//         if (sum > 9) {
+//             digits[i] = 0;
+//             carry = true;
+//         } else {
+//             digits[i] = sum;
+//         }
+//         i--;
+//     }
+//     if(carry){
+//         digits.unshift(1);
+//     }
+//     return digits;
+// };
 // @lc code=end
 
