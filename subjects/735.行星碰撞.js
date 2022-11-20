@@ -104,6 +104,5 @@ var asteroidCollision = function (asteroids) {
     }
     return ans;
 };
-asteroidCollision([-2,-2,1,-1])
 // @lc code=end
 
