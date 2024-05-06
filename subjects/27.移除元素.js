@@ -77,39 +77,50 @@
  * @param {number[]} nums
  * @param {number} val
  * @return {number}
- */
+ * 方法: 双指针
+ * 过程: 
+ *     a. 设置l(left), r(right)指针，从两边往中间遍历.
+ *     b. 如果左边或右边跟val相同，则交换两边元素（前提是另一边的元素跟val不相同）
+ *     c. 直到left === right
+ * 复杂度: 
+ *     空间复杂度: O(1)
+ *     时间复杂度: O(n)
+ * 代码:
+ *     var removeElement = function (nums, val) {
+ *         let r = 0;
+ *         let l = nums.length - 1;
+ *         // 主逻辑
+ *         while (r < l) {
+ *             if (nums[r] === val) {
+ *                 if (nums[l] === val) {
+ *                     l--;
+ *                 } else {
+ *                     [nums[r], nums[l]] = [nums[l], nums[r]];
+ *                     r++;
+ *                     l--;
+ *                 }
+ *             } else {
+ *                 if (nums[l] === val) {
+ *                     l--;
+ *                     r++;
+ *                 } else {
+ *                     r++;
+ *                 }
+ *             }
+ *         }
+ *         // 边界
+ *         if (r === 0 && nums[r] === val) {
+ *             return 0;
+ *         }
+ *         if (r === l) {
+ *             if (nums[r] === val) return r;
+ *         } else if (r > l) {
+ *             return r;
+ *         }
+ *         return r + 1;
+ *     };
+ **/
 var removeElement = function (nums, val) {
-    let pointerX = 0;
-    let pointerY = nums.length - 1;
-    // 主逻辑
-    while (pointerX < pointerY) {
-        if (nums[pointerX] === val) {
-            if (nums[pointerY] === val) {
-                pointerY--;
-            } else {
-                [nums[pointerX], nums[pointerY]] = [nums[pointerY], nums[pointerX]];
-                pointerX++;
-                pointerY--;
-            }
-        } else {
-            if (nums[pointerY] === val) {
-                pointerY--;
-                pointerX++;
-            } else {
-                pointerX++;
-            }
-        }
-    }
-    // 边界
-    if (pointerX === 0 && nums[pointerX] === val) {
-        return 0;
-    }
-    if (pointerX === pointerY) {
-        if (nums[pointerX] === val) return pointerX;
-    } else if (pointerX > pointerY) {
-        return pointerX;
-    }
-    return pointerX + 1;
 };
 // @lc code=end
 
