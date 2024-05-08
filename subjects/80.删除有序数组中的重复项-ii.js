@@ -73,47 +73,48 @@
 /**
  * @param {number[]} nums
  * @return {number}
+ * 
+ * 方法一: 双指针
+ * 过程: 
+ *     次题与 [26] 删除有序数组中的重复项 异曲同工。只是细节上有差别。
+ *     a. 设置left=0,right=left+1指针。确保0至left指针的重复元素不会超过3个。
+ *     b. 如果nums[left]和nums[right]不相同; 则nums[left+1] = nums[right]; left&&right++
+ *     c. 如果nums[left]和nums[right]相同
+ *            c.a 用cnt记录相同的次数。
+ *            c.b 如果cnt===1; 指针left++; (此处是关键细节)
+ * 复杂度:
+ *     空间复杂度: O(1)。
+ *     时间复杂度: O(n)。
+ * 代码: 
+ *     var removeDuplicates = function (nums) {
+ *       let left = 0;
+ *       let right = left + 1;
+ *       if (nums.length === 1) return nums.length;
+ *       while (left < nums.length && right < nums.length) {
+ *           if (nums[right] === nums[left]) {
+ *               let cnt = 0;
+ *               while (nums[left] === nums[right]) {
+ *                   cnt++;
+ *                   if (cnt === 1) {
+ *                       left++;
+ *                   }
+ *                   nums[left] = nums[right];
+ *                   right++;
+ *                   if (right >= nums.length) {
+ *                       return left + 1;
+ *                   }
+ *               }
+ *               nums[++left] = nums[right];
+ *               right++;
+ *           } else {
+ *               nums[++left] = nums[right];
+ *               right++;
+ *           }
+ *       }
+ *       return left + 1;
+ *     };
  */
 var removeDuplicates = function (nums) {
-    let right = 0;
-    let left = right + 1;
-    while (right < nums.length && left < nums.length) {
-        if (nums[right] === nums[left]) {
-            let cnt = 0;
-            while (nums[right] === nums[left]) {
-                cnt++;
-                left++;
-            }
-            if (cnt === 1) {
-                nums[right + 1] = nums[right];
-                nums[right + 2] = nums[left];
-                if (left === nums.length - 1) {
-                    return right + 1;
-                } else if (left > nums.length - 1) {
-                    return right;
-                }
-                right = right + 2;
-                
-
-                left++;
-                continue;
-            }
-            // if (left > nums.length) return right + 1;
-            // if (right + 2 >= nums.length) return nums.length;
-            nums[right + 1] = nums[right];
-            nums[right + 2] = nums[left];
-            right = right + 2;
-            left++;
-        } else {
-            nums[right + 1] = nums[left];
-            right++;
-            left++;
-        }
-    }
-    return right + 1;
 };
-removeDuplicates(
-    [1,2,2]
-);
 // @lc code=end
 
