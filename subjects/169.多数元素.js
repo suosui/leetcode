@@ -72,8 +72,34 @@
  *             }
  *         }
  *     };
+ * 方法二: 消除法（参照他人的答案，很巧妙）
+ * 过程:
+ *     因为多数的元素的占比 > nums.length/2。
+ *     就是说 多数的元素 比其他所有元素的合都多。
+ *     所以 多数元素 和 其他所有元素消除之后剩下的肯定是多数元素。
+ * 复杂度:
+ *     时间复杂度: O(n)
+ *     空间复杂度: O(1)
+ * 代码:
+ *     var majorityElement = function (nums) {
+ *         let winner = nums[0];
+ *         let cnt = 0;
+ *         for (let num of nums) {
+ *             if (winner === num) {
+ *                 cnt++;
+ *                 continue;
+ *             }
+ *             cnt--;
+ *             if (cnt < 0) {
+ *                 winner = num;
+ *                 cnt++;
+ *             }
+ *         }
+ *         return winner;
+ *     };
  */
 var majorityElement = function (nums) {
+    
 };
 // @lc code=end
 
