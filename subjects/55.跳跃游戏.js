@@ -62,6 +62,22 @@
  *  复杂度：
  *     时间复杂度：O(n)
  *     空间复杂度：O(1) 
+ *  代码：
+ *      var canJump = function (nums) {
+ *          if (nums.length === 1) return true;
+ *          let maxDistance = 0;
+ *          for (let i = 0; i < nums.length; i++) {
+ *              if (maxDistance < i) {
+ *                  break;
+ *              }
+ *              if (maxDistance < i + nums[i]) {
+ *                  maxDistance = i + nums[i];
+ *              }
+ *              if (maxDistance >= nums.length - 1) break;
+ *          }
+ *          if (maxDistance >= nums.length - 1) return true;
+ *          return false;
+ *      }
  */
 
 // @lc code=start
@@ -71,19 +87,6 @@
  * 
  */
 var canJump = function (nums) {
-    if (nums.length === 1) return true;
-    let maxDistance = 0;
-    for (let i = 0; i < nums.length; i++) {
-        if (maxDistance < i) {
-            break;
-        }
-        if (maxDistance < i + nums[i]) {
-            maxDistance = i + nums[i];
-        }
-        if (maxDistance >= nums.length - 1) break;
-    }
-    if (maxDistance >= nums.length - 1) return true;
-    return false;
 }
 // @lc code=end
 
