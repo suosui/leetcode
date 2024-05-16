@@ -53,17 +53,51 @@
 /**
  * @param {number[]} citations
  * @return {number}
+ *  方法一：排序
+ * 
+ *  过程：
+ *    引用大佬的截图：
+ *        作者：灵茶山艾府
+ *        链接：https://leetcode.cn/problems/h-index/solutions/2502837/mei-kan-dong-ti-yi-yi-zhang-tu-miao-dong-8zps/
+ *        来源：力扣（LeetCode）
+ *        著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+ *  引用次数
+ *      ^
+ *      |
+ *      |
+ *      |          6
+ *      |          _         5
+ *      |         | |        _
+ *      |         | |       | |
+ *      |  3      | |       | |
+ *    3 |_ _ _ _ _|_|_ _ _ _|_|_ _
+ *      | | |     | |   1   | |
+ *      | | |     | |   _   | |
+ *      | | |  0  | |  | |  | |
+ *      ——————————————————————————————> 论文
+ *      至少有1篇论文的引用次数>=1.
+ *      至少有2篇论文的引用次数>=2
+ *      至少有3篇论文的引用次数>=3
+ *      没有4篇论文的引用次数>=4.
+ *      没有5篇论文的引用次数>=5。
+ *      所以h 的最大值是3。
+ *  
+ *  复杂度：
+ *     时间复杂度：O（n）
+ *     空间复杂度：O（n）
+ *  代码：
+ *     var hIndex = function (citations) {
+ *         let out = 0;
+ *         citations.sort((a, b) => a - b);
+ *         const len = citations.length;
+ *         for (let i = 0; i < len; i++) {
+ *             if (len - i <= citations[i]) {
+ *                 return len - i;
+ *             }
+ *         }
+ *         return out;
+ *     };
  */
 var hIndex = function (citations) {
-    let out = 0;
-    citations.sort((a, b) => a - b);
-    const len = citations.length;
-    for (let i = 0; i < len; i++) {
-        if (len - i <= citations[i]) {
-            out = len - i;
-            break;
-        }
-    }
-    return out;
 };
 // @lc code=end
