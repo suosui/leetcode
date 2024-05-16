@@ -60,53 +60,75 @@
  * 在调用 getRandom 方法时，数据结构中 至少存在一个 元素。
  * 
  * 
- * 
- * 
- */
+ * 方法一：数组+Map
+ * 过程：
+ *     Map:<val:indexOfArr>
+ *     Array: [val1,val2...]
+ *  复杂度：
+ *     时间复杂度：O(1)
+ *     空间复杂度：O(n)
+ *  代码：
+ *     var RandomizedSet = function () {
+ *         this.hash = new Map();
+ *         this.arr = [];
+ *     };
+ *     
+ *     RandomizedSet.prototype.insert = function (val) {
+ *         if (this.hash.has(val)) {
+ *             return false;
+ *         }
+ *         const length = this.arr.length;
+ *         this.hash.set(val, length);
+ *         this.arr.push(val);
+ *         return true;
+ *     };
+ *     
+ *     RandomizedSet.prototype.remove = function (val) {
+ *         if (!this.hash.has(val)) {
+ *             return false;
+ *         }
+ *         const locate = this.hash.get(val);
+ *         const lastOne = this.arr[this.arr.length - 1];
+ *         this.arr[locate] = lastOne;
+ *         this.hash.set(lastOne, locate);
+ *         this.arr.pop();
+ *         this.hash.delete(val);
+ *         return true;
+ *     };
+ *     
+ *     RandomizedSet.prototype.getRandom = function () {
+ *         const randomIndex = Math.floor(Math.random() * this.arr.length);
+ *         return this.arr[randomIndex];
+ *     };
+**/
 
 // @lc code=start
-var RandomizedSet = function () {
-    this.hash = new Map();
-    this.arr = [];
+
+var RandomizedSet = function() {
+
 };
 
 /** 
  * @param {number} val
  * @return {boolean}
  */
-RandomizedSet.prototype.insert = function (val) {
-    if (this.hash.has(val)) {
-        return false;
-    }
-    const length = this.arr.length;
-    this.hash.set(val, length);
-    this.arr.push(val);
-    return true;
+RandomizedSet.prototype.insert = function(val) {
+
 };
 
 /** 
  * @param {number} val
  * @return {boolean}
  */
-RandomizedSet.prototype.remove = function (val) {
-    if (!this.hash.has(val)) {
-        return false;
-    }
-    const locate = this.hash.get(val);
-    const lastOne = this.arr[this.arr.length - 1];
-    this.arr[locate] = lastOne;
-    this.hash.set(lastOne, locate);
-    this.arr.pop();
-    this.hash.delete(val);
-    return true;
+RandomizedSet.prototype.remove = function(val) {
+
 };
 
 /**
  * @return {number}
  */
-RandomizedSet.prototype.getRandom = function () {
-    const randomIndex = Math.floor(Math.random() * this.arr.length);
-    return this.arr[randomIndex];
+RandomizedSet.prototype.getRandom = function() {
+
 };
 
 /**
