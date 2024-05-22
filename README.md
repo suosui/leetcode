@@ -20,6 +20,7 @@
 * :construction:[`[中等]` 134 加油站](./subjects/134.%E5%8A%A0%E6%B2%B9%E7%AB%99.js)
 * :question:[`[困难]` 135 分发糖果](./subjects/135.%E5%88%86%E5%8F%91%E7%B3%96%E6%9E%9C.js)
 * :tada:[`[困难]` 42 接雨水](./subjects/42.%E6%8E%A5%E9%9B%A8%E6%B0%B4.js)
+* :tada:[`[简单]` 13 罗马数字转整数](./subjects/13.%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E8%BD%AC%E6%95%B4%E6%95%B0.js)
 
 ### 回溯
 
