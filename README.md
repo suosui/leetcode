@@ -27,6 +27,10 @@
 * :wastebasket:[`[中等]` 6. Z 字形变换](./subjects/6.z-%E5%AD%97%E5%BD%A2%E5%8F%98%E6%8D%A2.js)
 * :tada:[`[简单]` 28. 找出字符串中第一个匹配项的下标](./subjects/28.%E6%89%BE%E5%87%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8C%B9%E9%85%8D%E9%A1%B9%E7%9A%84%E4%B8%8B%E6%A0%87.js)
 
+### 双指针
+
+* :tada:[`[简单]` 125. 验证回文串](./subjects/125.%E9%AA%8C%E8%AF%81%E5%9B%9E%E6%96%87%E4%B8%B2.js)
+
 ### 回溯
 
 * :tada:[`[中等]` 79. 单词搜索](./subjects/79.%E5%8D%95%E8%AF%8D%E6%90%9C%E7%B4%A2.js)

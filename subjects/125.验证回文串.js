@@ -54,7 +54,36 @@
  * 1 <= s.length <= 2 * 10^5
  * s 仅由可打印的 ASCII 字符组成
  * 
- * 
+ *  方法一：双指针
+ *  思路：
+ *      设置左右指针，两个指针分别向中间挪动
+ *      如果左指针指向的字符不是字母数字字符，则左指针右移，右指针同理。
+ *      如果左右指针指向的字符不相等，则返回false
+ *  复杂度：
+ *      时间复杂度：O(n)
+ *      空间复杂度：O(1)
+ *  代码：
+ *      var isPalindrome = function (s) {
+ *          let alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+ *              '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
+ *          ];
+ *          let l = 0;
+ *          let r = s.length - 1;
+ *          while (l < r) {
+ *              while (!alphabet.includes(s[l]) && l < r) {
+ *                  l++;
+ *              }
+ *              while (!alphabet.includes(s[r]) && l < r) {
+ *                  r--;
+ *              }
+ *              if (s[r].toLowerCase() !== s[l].toLowerCase()) {
+ *                  return false;
+ *              }
+ *              l++;
+ *              r--;
+ *          }
+ *          return true;
+ *      };
  */
 
 // @lc code=start
@@ -63,13 +92,6 @@
  * @return {boolean}
  */
 var isPalindrome = function (s) {
-    s = s.replace(/([^a-zA-Z0-9])/g, '');
-    for (let i = 0, j = s.length - 1; i < j; i++, j--) {
-        if (s[i].toLocaleLowerCase() !== s[j].toLocaleLowerCase()) {
-            return false;
-        }
-    }
-    return true;
 };
 // @lc code=end
 
