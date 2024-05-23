@@ -60,22 +60,36 @@
  * @param {string} s
  * @param {string} t
  * @return {boolean}
+ * 
+ *  方法一：双指针
+ *  思路：
+ *      1. 定义两个指针 i 和 j 分别指向 s 和 t 的初始位置
+ *      2. 当 s[i] === t[j] 时，i 和 j 同时右移
+ *      3. 当 s[i] !== t[j] 时，只有 j 右移
+ *      4. 当 i < s.length 时，返回 false
+ *      5. 当 j === t.length 时，返回 true
+ *  复杂度：
+ *      时间复杂度：O(n)
+ *      空间复杂度：O(1)
+ *  代码：
+ *      var isSubsequence = function (s, t) {
+ *          let i = 0;
+ *          let j = 0;
+ *          while (j < t.length) {
+ *              if (s[i] === t[j]) {
+ *                  i++;
+ *                  j++;
+ *              } else {
+ *                  j++;
+ *              }
+ *          }
+ *          if (i < s.length) {
+ *              return false;
+ *          }
+ *          return true;
+ *      };
  */
 var isSubsequence = function (s, t) {
-    let i = 0;
-    let j = 0;
-    while (j < t.length) {
-        if (s[i] === t[j]) {
-            i++;
-            j++;
-        } else {
-            j++;
-        }
-    }
-    if (i < s.length) {
-        return false;
-    }
-    return true;
 };
 // @lc code=end
 
