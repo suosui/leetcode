@@ -67,72 +67,79 @@
  * @param {string} s
  * @param {string} t
  * @return {string}
+ * 
+ *  方法一：滑动窗口+哈希表
+ *  思路：
+ *     可以使用滑动窗口和哈希表解决这个问题。
+ *     1. 使用两个指针 l 和 r 表示滑动窗口的左右边界，移动 r 扩大窗口，移动 l 收缩窗口。
+ *     2. 使用哈希表 hashMap 维护目标字符 t 中字符的出现次数，使用 cnt 变量表示当前窗口中满足条件的字符个数, total 变量表示目标字符 t 中字符的总个数。
+ *     3. 移动 r，如果 s[r] 在 t 中，更新哈希表 hashMap，如果 hashMap[s[r]] 的值小于等于 0，cnt++。
+ *     4. 当 cnt 等于 total 时，说明当前窗口包含了所有目标字符，移动 l 缩小窗口，更新结果。
+ *     5. 重复 3 和 4，直到 r 到达 s 的末尾。
+ *     6. 返回结果。
+ *  复杂度：
+ *     时间复杂度：O(n)，n 表示字符串 s 的长度。
+ *     空间复杂度：O(∣Σ∣)，Σ 表示字符集，∣Σ∣ 表示字符集的大小。
+ *  代码：
+ *      var minWindow = function (s, t) {
+ *          // 如果 s 的长度小于 t 的长度，直接返回空字符串
+ *          if (s.length < t.length) {
+ *              return "";
+ *          }
+ *          let toReturn = "";
+ *          // 初始化哈希表
+ *          const hashMap = {};
+ *          for (let char of t) {
+ *              if (!hashMap[char]) {
+ *                  hashMap[char] = {
+ *                      total: 0,
+ *                      cnt: 0,
+ *                  }
+ *              }
+ *              hashMap[char].total++;
+ *          }
+ *          let l = 0;
+ *          let r = 0;
+ *          let cnt = 0;
+ *          while (l <= r && r < s.length) {
+ *              if (cnt === t.length) {// 当前窗口包含了所有目标字符
+ *                  while (l < r) {// 缩小窗口
+ *                      if (!hashMap[s[l]]) {
+ *                          l++;
+ *                      } else if (hashMap[s[l]].total < hashMap[s[l]].cnt) {
+ *                          hashMap[s[l]].cnt--;
+ *                          l++;
+ *                      } else {
+ *                          break;
+ *                      }
+ *                  }
+ *                  if (r - l < toReturn.length || toReturn == '') { // 更新结果
+ *                      toReturn = s.substring(l, r + 1);
+ *                  }
+ *                  hashMap[s[l]].cnt--;
+ *                  l++;
+ *                  cnt--;
+ *                  r++;
+ *              }
+ *              if (!hashMap[s[r]]) {// s[r] 不在 t 中
+ *                  r++;
+ *                  continue;
+ *              } else if (hashMap[s[r]].total > hashMap[s[r]].cnt) {// s[r] 在 t 中，且当前窗口中 s[r] 的个数小于 t 中 s[r] 的个数
+ *                  hashMap[s[r]].cnt++;
+ *                  cnt++;
+ *                  if (cnt === t.length) {// 当前窗口包含了所有目标字符
+ *                      continue;
+ *                  }
+ *              } else if (cnt < t.length) { // s[r] 在 t 中，且当前窗口中 s[r] 的个数等于 t 中 s[r] 的个数
+ *                  hashMap[s[r]].cnt++;
+ *              }
+ *              r++; // 扩大窗口
+ *          }
+ *          return toReturn;
+ *      };
  */
 var minWindow = function (s, t) {
-    if (t.length > s.length) {
-        return "";
-    }
-    let left = 0;
-    let right = 0;
-    let hash = getHash(t);
-    let size = hash.size;
-    let res = [];
-    while (right < s.length) {
-        while (size > 0 && right < s.length) {
-            const char = s[right];
-            if (hash.has(char)) {
-                const remain = hash.get(char) - 1;
-                if (remain === 0) {
-                    size -= 1;
-                }
-                hash.set(char, remain);
-            }
-            if (size === 0) {
-                break;
-            }
-            right++;
-        }
-        if (size > 0) {
-            break;
-        }
-        while (size === 0) {
-            const char = s[left];
-            if (hash.has(char)) {
-                const remain = hash.get(char) + 1;
-                if (remain > 0) {
-                    size++;
-                }
-                hash.set(char, remain);
-            }
-            if (size > 0) {
-                break;
-            }
-            left++;
-        }
-        const curMinSubStr = s.substring(left, right + 1);
-        res.push(curMinSubStr)
-        if (right === s.length - 1) {
-            break;
-        }
-        left++;
-        right = left;
-        hash = getHash(t);
-        size = hash.size;
-    }
-    return res.sort((a, b) => { return a.length - b.length })[0] || '';
-};
 
-var getHash = function (t) {
-    const hash = new Map();
-    for (let char of t) {
-        if (hash.has(char)) {
-            hash.set(char, hash.get(char) + 1);
-            continue;
-        } else {
-            hash.set(char, 1);
-        }
-    }
-    return hash;
-}
+};
 // @lc code=end
 
