@@ -52,10 +52,19 @@
  * @param {string} s
  * @param {string} t
  * @return {boolean}
+ * 
+ *  方法一：排序
+ *  思路：没啥可讲的。
+ *  复杂度：
+ *      时间复杂度：O(nlogn)，其中 n 为 s 的长度。
+ *      空间复杂度：O(logn)。
+ *  代码：
+ *      var isAnagram = function (s, t) {
+ *          s = s.split('').sort().join('')
+ *          t = t.split('').sort().join('');
+ *          return s == t;
+ *      };
  */
 var isAnagram = function (s, t) {
-    s = s.split('').sort().join('')
-    t = t.split('').sort().join('');
-    return s == t;
 };
 // @lc code=end
