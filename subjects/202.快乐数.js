@@ -60,26 +60,35 @@
 /**
  * @param {number} n
  * @return {boolean}
+ *  
+ *  方法一：使用 Set 存储历史记录
+ *  思路：
+ *      1. 使用 Set 存储历史记录，如果出现重复的数字，则说明进入了循环，返回 false
+ *      2. 如果计算出的结果为 1，则返回 true
+ *      3. 如果不是 1，继续计算
+ *      4. 重复 1-3 步骤
+ *  复杂度：
+ *      时间复杂度：O(logn)
+ *      空间复杂度：O(logn)
+ *  代码：
+ *      var isHappy = function (n) {
+ *          const history = new Set();
+ *          while (true) {
+ *              n = String(n).split("").sort().join("")
+ *              if (history.has(n)) {
+ *                  return false;
+ *              }
+ *              history.add(n);
+ *              let temp = 0;
+ *              String(n).split("").map((eachN) => {
+ *                  temp += Math.pow(Number(eachN), 2);
+ *              });
+ *              if(temp === 1) return true;
+ *              n = temp;
+ *          }
+ *      };
  */
 var isHappy = function (n) {
-    const history = new Map();
-    let str = String(n);
-    while (true) {
-        const strSplit = str.split('');
-        const key = strSplit.sort((a, b) => { return a - b }).join('');
-        if (history.has(key)) {
-            return false;
-        }
-        history.set(key, true);
-        n = 0;
-        strSplit.map(item => {
-            n += item * item;
-        });
-        if (n === 1) {
-            return true;
-        }
-        str = String(n);
-    }
 };
 // @lc code=end
 
