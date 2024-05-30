@@ -54,22 +54,31 @@
 /**
  * @param {string[]} strs
  * @return {string[][]}
+ * 
+ *  方法一：哈希表+排序
+ *  思路：
+ *     由于互为字母异位词的两个字符串包含的字母相同，因此对两个字符串分别进行排序之后得到的字符串一定是相同的，故可以将排序之后的字符串作为哈希表的键。
+ *  复杂度：
+ *     时间复杂度：O(nklogk)，其中 n 是 strs 中的字符串的数量，k 是 strs 中的字符串的的最大长度。需要遍历 n 个字符串，对于每个字符串，需要 O(klogk) 的时间进行排序以及 O(1) 的时间更新哈希表，因此总时间复杂度是 O(nklogk)。
+ *     空间复杂度：O(nk)，其中 n 是 strs 中的字符串的数量，k 是 strs 中的字符串的的最大长度。需要用哈希表存储全部字符串。
+ *  代码：
+ *     var groupAnagrams = function (strs) {
+ *         const groups = [];
+ *         const hash = {};
+ *         for (let str of strs) {
+ *             const strSort = str.split("").sort().join('');
+ *             if (!hash[strSort]) {
+ *                 hash[strSort] = [];
+ *             }
+ *             hash[strSort].push(str);
+ *         }
+ *         for (let key in hash) {
+ *             groups.push(hash[key]);
+ *         }
+ *         return groups;
+ *     };
  */
 var groupAnagrams = function (strs) {
-    const groups = [];
-    const hash = {};
-    for (let str of strs) {
-        const strSort = str.split("").sort().join('');
-        if (!hash[strSort]) {
-            hash[strSort] = [];
-        }
-        hash[strSort].push(str);
-    }
-    for (let key in hash) {
-        groups.push(hash[key]);
-    }
-    return groups;
 };
-groupAnagrams(["",""]);
 // @lc code=end
 
