@@ -63,17 +63,27 @@
  * @param {number[]} nums
  * @param {number} target
  * @return {number[]}
+ * 
+ *  方法一：HashMap
+ *  思路：
+ *     利用哈希表存储数组元素的值和索引，遍历数组，对于每个元素 nums[i]，查找 target - nums[i] 是否在哈希表中，如果在哈希表中，返回两个元素的索引。
+ *  复杂度：
+ *     时间复杂度：O(n)，其中 n 是数组中的元素数量。对于每一个元素 x，我们可以 O(1) 地寻找 target - x。
+ *     空间复杂度：O(n)，其中 n 是数组中的元素数量。主要为哈希表的开销。
+ *  代码：
+ *     let twoSum = (nums, target) => {
+ *         let targetMap = new Map();
+ *         let len = nums.length;
+ *         for (let i = 0; i < len; i++) {
+ *             const key = target - nums[i];
+ *             if (targetMap.has(key)) {
+ *                 return [targetMap.get(key), i];
+ *             }
+ *             targetMap.set(nums[i], i);
+ *         }
+ *     }
  */
 let twoSum = (nums, target) => {
-  let targetMap = new Map();
-  let len = nums.length;
-  for (let i = 0; i < len; i++) {
-    const key = target - nums[i];
-    if (targetMap.has(key)) {
-      return [targetMap.get(key), i];
-    }
-    targetMap.set(nums[i], i);
-  }
 }
 // @lc code=end
 

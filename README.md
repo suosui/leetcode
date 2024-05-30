@@ -49,6 +49,7 @@
 * :tada:[`[简单]` 290. 单词规律](./subjects/290.%E5%8D%95%E8%AF%8D%E8%A7%84%E5%BE%8B.js)
 * :tada:[`[简单]` 242. 有效的字母异位词](./subjects/242.%E6%9C%89%E6%95%88%E7%9A%84%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D.js)
 * :tada:[`[中等]` 49. 字母异位词分组](./subjects/49.%E5%AD%97%E6%AF%8D%E5%BC%82%E4%BD%8D%E8%AF%8D%E5%88%86%E7%BB%84.js)
+* :tada:[`[简单]` 1. 两数之和](./subjects/1.%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C.js)
 
 ### 回溯
 
