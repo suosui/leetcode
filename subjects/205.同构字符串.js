@@ -60,44 +60,36 @@
  * @param {string} s
  * @param {string} t
  * @return {boolean}
+ * 
+ *  方法一：哈希表
+ *  思路：
+ *      把题目理解了就能很容易解决，同构字符串就是两个字符串中的字符一一对应，即一个字符在一个字符串中出现的位置和另一个字符串中对应字符出现的位置相同。
+ *  复杂度：
+ *      时间复杂度：O(n)，n 为字符串长度
+ *      空间复杂度：O(n)
+ *  代码：
+ *      var isIsomorphic = function (s, t) {
+ *          const hashS = {};
+ *          const hashT = {};
+ *          for (let i = 0; i < s.length; i++) {
+ *              if (!hashS[s[i]]) {
+ *                  hashS[s[i]] = t[i];
+ *              }
+ *              if (!hashT[t[i]]) {
+ *                  hashT[t[i]] = s[i];
+ *              }
+ *              if (hashS[s[i]] !== t[i]) {
+ *                  return false;
+ *              }
+ *              if (hashT[t[i]] !== s[i]) {
+ *                  return false;
+ *              }
+ *          }
+ *          return true;
+ *      };
  */
 var isIsomorphic = function (s, t) {
-    const hashS = new Map();
-    const sameCharsS = {};
-    const hashT = new Map();
-    const sameCharsT = {};
-    for (let i = 0; i < s.length; i++) {
-        const char = s[i];
-        if (hashS.has(char)) {
-            const value = hashS.get(char);
-            hashS.set(char, [...value, i]); // 把坐标存储起来
-            sameCharsS[char] = [...value, i];
-        } else {
-            hashS.set(char, [i]); // 把坐标存储起来
-        }
-    }
-    for (let i = 0; i < t.length; i++) {
-        const char = t[i];
-        if (hashT.has(char)) {
-            const value = hashT.get(char);
-            hashT.set(char, [...value, i]); // 把坐标存储起来
-            sameCharsT[char] = [...value, i];
-        } else {
-            hashT.set(char, [i]); // 把坐标存储起来
-        }
-    }
-    let patternS = "";
-    let patternT = "";
-    for (let key in sameCharsS) {
-        patternS += sameCharsS[key].join(',');
-    }
-    for (let key in sameCharsT) {
-        patternT += sameCharsT[key].join(',');
-    }
-    if (patternS === patternT) {
-        return true;
-    }
-    return false;
+
 };
 // @lc code=end
 
