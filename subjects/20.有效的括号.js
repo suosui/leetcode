@@ -61,37 +61,39 @@
 /**
  * @param {string} s
  * @return {boolean}
+ * 
+ *  方法一：栈
+ *  思路：
+ *     1. 遍历字符串，遇到左括号入栈，遇到右括号出栈
+ *     2. 如果出栈的左括号和当前右括号不匹配，返回false
+ *     3. 遍历结束后，如果栈不为空，返回false
+ *     4. 否则返回true
+ *  复杂度：
+ *     时间复杂度：O(n)
+ *     空间复杂度：O(n)
+ *  代码：
+ *     var isValid = function (s) {
+ *         let symbolMap = {
+ *             ')': '(', '}': '{', ']': '['
+ *         };
+ *         let stack = [];
+ *         for (let symbol of s) {
+ *             if (['(', '{', '['].includes(symbol)) {// 左括号
+ *                 stack.push(symbol); // 入栈
+ *             } else {
+ *                 const top = stack.pop(); // 出栈
+ *                 if (symbolMap[symbol] !== top) { // 不匹配
+ *                     return false;
+ *                 }
+ *             }
+ *         }
+ *         if (stack.length) {
+ *             return false;
+ *         }
+ *         return true;
+ *     };
  */
 var isValid = function (s) {
-    const dismissMap = {
-        "(": ")",
-        ")": "(",
-        "{": "}",
-        "}": "{",
-        "[": "]",
-        "]": "["
-    }
-    const stack = [];
-    if([')','}',']'].includes(s[0])){
-        return false;
-    }
-    if(['(','{','['].includes(s[s.length-1])){
-        return false;
-    }
-    for (let char of s) {
-        if (dismissMap[char] === stack[stack.length - 1]) {
-            stack.pop();
-            continue;
-        }
-        if([')','}',']'].includes(char)){
-            return false;
-        }
-        stack.push(char);
-    }
-    if (stack.length > 0) {
-        return false;
-    }
-    return true;
 };
 // @lc code=end
 
