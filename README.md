@@ -52,6 +52,7 @@
 * :tada:[`[简单]` 1. 两数之和](./subjects/1.%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C.js)
 * :tada:[`[简单]` 202. 快乐数](./subjects/202.%E5%BF%AB%E4%B9%90%E6%95%B0.js)
 * :tada:[`[简单]` 219. 存在重复元素 II](./subjects/219.%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0-ii.js)
+* :tada:[`[中等]` 128. 最长连续序列](./subjects/128.%E6%9C%80%E9%95%BF%E8%BF%9E%E7%BB%AD%E5%BA%8F%E5%88%97.js)
 
 ### 回溯
 
