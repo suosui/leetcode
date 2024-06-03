@@ -78,23 +78,35 @@
 /**
  * @param {string} path
  * @return {string}
+ * 
+ *  方法一：栈
+ *  思路：
+ *     1. 使用栈来存储路径
+ *     2. 遍历路径，遇到'..'时，弹出栈顶元素
+ *     3. 遇到'.'、' '、''时，跳过
+ *     4. 其他情况，入栈
+ *     5. 最后返回栈中元素的拼接
+ *  复杂度：
+ *     时间复杂度：O(n)
+ *     空间复杂度：O(n)
+ *  代码：
+ *     var simplifyPath = function (path) {
+ *         const stack = [];
+ *         const pathSplit = path.split('/');
+ *         for (let dir of pathSplit) {
+ *             if (dir === '..') {
+ *                 stack.pop();
+ *             } else if (['.', ' ', ''].includes(dir)) {
+ *                 continue;
+ *             } else {
+ *                 stack.push(dir);
+ *             }
+ *         }
+ *         return '/' + stack.join('/');
+ *     };
  */
 var simplifyPath = function (path) {
-    const stack = [];
-    const split = path.split('/');
-    for (let item of split) {
-        if (['', '.'].includes(item)) {
-            continue;
-        }
-        if (item === '..') {
-            stack.pop();
-            continue;
-        }
-        stack.push(item);
-    }
-    let ans = '/';
-    ans += stack.join('/');
-    return ans;
+
 };
 // @lc code=end
 
