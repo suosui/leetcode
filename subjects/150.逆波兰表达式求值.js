@@ -86,33 +86,50 @@
 /**
  * @param {string[]} tokens
  * @return {number}
+ * 
+ *  方法一：栈
+ *  思路：
+ *     1. 遍历数组，如果是数字则入栈，如果是运算符则取出栈顶两个数字进行计算，并将结果压入栈中
+ *     2. 最后栈中只有一个元素，返回即可
+ *  复杂度：
+ *     时间复杂度：O(n)
+ *     空间复杂度：O(n)
+ *  代码：
+ *     var evalRPN = function (tokens) {
+ *         const stack = [];
+ *         for (let token of tokens) {
+ *             if (['+', '-', '*', '/'].includes(token)) {
+ *                 let numB = stack.pop();
+ *                 let numA = stack.pop();
+ *                 let result = calculate(numA, numB, token);
+ *                 stack.push(result);
+ *                 continue;
+ *             }
+ *             stack.push(Number(token))
+ *         }
+ *         return stack[0]
+ *     };
+ *     
+ *     var calculate = (numA, numB, symbol) => {
+ *         const express = {
+ *             '*': () => {
+ *                 return numA * numB;
+ *             },
+ *             '+': () => {
+ *                 return numA + numB;
+ *             },
+ *             '-': () => {
+ *                 return numA - numB;
+ *             },
+ *             '/': () => {
+ *                 return parseInt(numA / numB);
+ *             }
+ *         }
+ *         return express[symbol]();
+ *     }
  */
 var evalRPN = function (tokens) {
-    const stack = [];
-    for (let token of tokens) {
-        if (['*', '/', '-', '+'].includes(token)) {
-            const top = Number(stack[stack.length - 1]);
-            if ('*' === token) {
-                stack[stack.length - 2] = top * Number(stack[stack.length - 2]);
-            } else if ('/' === token) {
-                let tmp = Number(stack[stack.length - 2]) / top;
-                if (tmp < 0) {
-                    tmp = Math.ceil(tmp);
-                } else {
-                    tmp = Math.floor(tmp);
-                }
-                stack[stack.length - 2] = tmp;
-            } else if ('-' === token) {
-                stack[stack.length - 2] = Number(stack[stack.length - 2]) - top;
-            } else if ('+' === token) {
-                stack[stack.length - 2] = top + Number(stack[stack.length - 2]);
-            }
-            stack.pop();
-            continue;
-        }
-        stack.push(token);
-    }
-    return stack[0];
+
 };
 // @lc code=end
 
