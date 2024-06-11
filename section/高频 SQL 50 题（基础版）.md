@@ -10,7 +10,7 @@
 
 ### 连接
 
-* :tada:[`[简单]` 1378 使用唯一标识码替换员工ID](../subjects/1378.%E4%BD%BF%E7%94%A8%E5%94%AF%E4%B8%80%E6%A0%87%E8%AF%86%E7%A0%81%E6%9B%BF%E6%8D%A2%E5%91%98%E5%B7%A5ID.sql)
+* :tada:[`[简单]` 1378 使用唯一标识码替换员工ID](../subjects/1378.%E4%BD%BF%E7%94%A8%E5%94%AF%E4%B8%80%E6%A0%87%E8%AF%86%E7%A0%81%E6%9B%BF%E6%8D%A2%E5%91%98%E5%B7%A5id.sql)
 * :tada:[`[简单]` 1608  产品销售分析 I](../subjects/1068.%E4%BA%A7%E5%93%81%E9%94%80%E5%94%AE%E5%88%86%E6%9E%90-i.sql)
 * :tada:[`[简单]` 1581  进店却未进行过交易的顾客](../subjects/1581.%E8%BF%9B%E5%BA%97%E5%8D%B4%E6%9C%AA%E8%BF%9B%E8%A1%8C%E8%BF%87%E4%BA%A4%E6%98%93%E7%9A%84%E9%A1%BE%E5%AE%A2.sql)
 * :tada:[`[简单]` 197 上升温度](../subjects/197.%E4%B8%8A%E5%8D%87%E7%9A%84%E6%B8%A9%E5%BA%A6.sql)
