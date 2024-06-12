@@ -44,3 +44,4 @@
 * :tada:[`[简单]` 610 判断三角形](../subjects/610.%E5%88%A4%E6%96%AD%E4%B8%89%E8%A7%92%E5%BD%A2.sql)
 * :tada:[`[中等]` 180 连续出现的数字](../subjects/180.%E8%BF%9E%E7%BB%AD%E5%87%BA%E7%8E%B0%E7%9A%84%E6%95%B0%E5%AD%97.sql)
 * :tada:[`[中等]` 1164 指定日期的产品价格](../subjects/1164.%E6%8C%87%E5%AE%9A%E6%97%A5%E6%9C%9F%E7%9A%84%E4%BA%A7%E5%93%81%E4%BB%B7%E6%A0%BC.sql)
+* :tada:[`[中等]` 1204 最后一个能进入巴士的人](../subjects/1204.%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E8%83%BD%E8%BF%9B%E5%85%A5%E5%B7%B4%E5%A3%AB%E7%9A%84%E4%BA%BA.sql)
