@@ -42,4 +42,4 @@
 * :tada:[`[简单]` 1731 买下所有产品的客户](../subjects/1731.%E6%AF%8F%E4%BD%8D%E7%BB%8F%E7%90%86%E7%9A%84%E4%B8%8B%E5%B1%9E%E5%91%98%E5%B7%A5%E6%95%B0%E9%87%8F.sql)
 * :tada:[`[简单]` 1789 员工的直属部门](../subjects/1789.%E5%91%98%E5%B7%A5%E7%9A%84%E7%9B%B4%E5%B1%9E%E9%83%A8%E9%97%A8.sql)
 * :tada:[`[简单]` 610 判断三角形](../subjects/610.%E5%88%A4%E6%96%AD%E4%B8%89%E8%A7%92%E5%BD%A2.sql)
-* :tada:[`[简单]` 180 连续出现的数字](../subjects/180.%E8%BF%9E%E7%BB%AD%E5%87%BA%E7%8E%B0%E7%9A%84%E6%95%B0%E5%AD%97.sql)
+* :tada:[`[中等]` 180 连续出现的数字](../subjects/180.%E8%BF%9E%E7%BB%AD%E5%87%BA%E7%8E%B0%E7%9A%84%E6%95%B0%E5%AD%97.sql)
