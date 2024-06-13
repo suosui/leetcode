@@ -50,3 +50,4 @@
 * :tada:[`[简单]` 1978 上级经理已离职的公司员工](../subjects/1978.%E4%B8%8A%E7%BA%A7%E7%BB%8F%E7%90%86%E5%B7%B2%E7%A6%BB%E8%81%8C%E7%9A%84%E5%85%AC%E5%8F%B8%E5%91%98%E5%B7%A5.sql)
 * :construction:[`[中等]` 626 换座位](../subjects/626.%E6%8D%A2%E5%BA%A7%E4%BD%8D.sql)
 * :tada:[`[中等]` 1341 电影评分](../subjects/1341.%E7%94%B5%E5%BD%B1%E8%AF%84%E5%88%86.sql)
+* :construction:[`[中等]` 1321 餐馆营业额变化增长](../subjects/1321.%E9%A4%90%E9%A6%86%E8%90%A5%E4%B8%9A%E9%A2%9D%E5%8F%98%E5%8C%96%E5%A2%9E%E9%95%BF.sql)
