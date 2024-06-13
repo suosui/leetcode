@@ -51,3 +51,4 @@
 * :construction:[`[中等]` 626 换座位](../subjects/626.%E6%8D%A2%E5%BA%A7%E4%BD%8D.sql)
 * :tada:[`[中等]` 1341 电影评分](../subjects/1341.%E7%94%B5%E5%BD%B1%E8%AF%84%E5%88%86.sql)
 * :construction:[`[中等]` 1321 餐馆营业额变化增长](../subjects/1321.%E9%A4%90%E9%A6%86%E8%90%A5%E4%B8%9A%E9%A2%9D%E5%8F%98%E5%8C%96%E5%A2%9E%E9%95%BF.sql)
+* :tada:[`[中等]` 602 好友申请 II ：谁有最多的好友](../subjects/602.%E5%A5%BD%E5%8F%8B%E7%94%B3%E8%AF%B7-ii-%EF%BC%9A%E8%B0%81%E6%9C%89%E6%9C%80%E5%A4%9A%E7%9A%84%E5%A5%BD%E5%8F%8B.sql)
