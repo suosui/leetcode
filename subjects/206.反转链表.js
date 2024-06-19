@@ -67,35 +67,48 @@
 /**
  * @param {ListNode} head
  * @return {ListNode}
+ * 
+ *  方法一： 头插法
+ *  思路：
+ *     就是从头到尾遍历原链表，去出curr,pre两个指针，然后将curr指向pre，然后pre和curr都往后移动一位.
+ *     对于头结点，需要将头结点的next指向null，否则会形成环
+ *  复杂度：
+ *     时间复杂度：O(n) 遍历一次链表
+ *     空间复杂度：O(1) 使用常数个变量
+ *  代码：
+ *      var reverseList = function (head) {
+ *          if (!head || !head.next) return head;
+ *          let pre = head;
+ *          let curr = head.next;
+ *          let isFirst = true;
+ *          while (curr) {
+ *              if (isFirst) {
+ *                  pre.next = null;
+ *                  isFirst = false;
+ *              }
+ *              let next = curr.next;
+ *              curr.next = pre;
+ *              pre = curr;
+ *              curr = next;
+ *          }
+ *          return pre;
+ *      };
+ *  测试用例：
+ *      function ListNode (val) {
+ *          this.val = val;
+ *          this.next = null;
+ *       }
+ *      let head = new ListNode(1);
+ *      let cur = head;
+ *      [2, 3, 4, 5].forEach(item => {
+ *          let node = new ListNode(item);
+ *          cur.next = node;
+ *          cur = cur.next;
+ *      });
+ *      console.log(head)
+ *      reverseList(head);
  */
-var reverseList = function(head) {
-    if(!head || !head.next) return head;
-    let pre = head;
-    let cur = head.next;
-    while (cur.next) {
-        let next = cur.next;
-        cur.next = pre;
-        pre = cur;
-        cur = next;
-    }
-    cur.next = pre;
-    head.next = null;
-    return cur;
+var reverseList = function (head) {
 };
 // @lc code=end
-
-// function ListNode (val) {
-//     this.val = val;
-//     this.next = null;
-// }
-
-// let head = new ListNode(1);
-// let cur = head;
-// [2,3,4,5].forEach(item => {
-//     let node = new ListNode(item);
-//     cur.next = node;
-//     cur = cur.next;
-// });
-// console.log(head)
-// reverseList(head);
 
