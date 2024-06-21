@@ -96,46 +96,65 @@
  *          }
  *          return head;
  *      };
+ *  
+ *  方法二：快慢指针
+ *  思路：
+ *     定义两个快慢指针，快指针先走 n 步，然后快慢指针一起走，当快指针走到链表尾部时，慢指针就是倒数第 n 个节点
+ *  过程：
+ *     1. 定义快慢指针 slow 和 fast，初始化都指向 head
+ *     2. 快指针先走 n 步
+ *     3. 快慢指针一起走，当快指针走到链表尾部时，慢指针就是倒数第 n 个节点
+ *     4. 删除倒数第 n 个节点
+ *  代码：
+ *     var removeNthFromEnd = function (head, n) {
+ *         if (!head.next) return null;
+ *         let slow = head;
+ *         let fast = head;
+ *         let i = 0;
+ *         let pre = null;
+ *         while (fast) {
+ *             if (i >= n) {
+ *                 pre = slow;
+ *                 slow = slow.next;
+ *             }
+ *             fast = fast.next;
+ *             i++;
+ *         }
+ *         if (pre) {
+ *             if (slow.next) {
+ *                 pre.next = slow.next;
+ *             } else {
+ *                 pre.next = null
+ *             }
+ *         } else {
+ *             head = slow.next
+ *         }
+ *         slow.next = null;
+ *         return head;
+ *     };
+ *  测试用例：
+ *     // 创建链表
+ *     function ListNode (val) {
+ *         this.val = val;
+ *         this.next = null;
+ *     }
+ *     let head = new ListNode(1);
+ *     head.next = new ListNode(1);
+ *     head.next.next = new ListNode(3);
+ *     head.next.next.next = new ListNode(4);
+ *     head.next.next.next.next = new ListNode(5);
+ *     
+ *     // 测试用例
+ *     let result = removeNthFromEnd(head, 2);
+ *     
+ *     // 打印结果
+ *     let node = result;
+ *     while (node !== null) {
+ *         console.log(node.val);
+ *         node = node.next;
+ *     }
  */
 var removeNthFromEnd = function (head, n) {
-    let slow = head;
-    let fast = head;
-    let diff = 0;
-    let pre = null;
-    while (fast) {
-        if (diff >= n) {
-            slow = slow.next;
-        }
-        if (diff === n) {
-            pre = fast;
-        }
-        diff++;
-        fast = fast.next;
-    }
-    if(diff === n) return null;
-    if (pre) pre.next = slow.next;
-    return head;
 };
-
-// 创建链表
-function ListNode (val) {
-    this.val = val;
-    this.next = null;
-}
-let head = new ListNode(1);
-head.next = new ListNode(2);
-// head.next.next = new ListNode(3);
-// head.next.next.next = new ListNode(4);
-// head.next.next.next.next = new ListNode(5);
-
-// 测试用例
-let result = removeNthFromEnd(head, 1);
-
-// 打印结果
-let node = result;
-while (node !== null) {
-    console.log(node.val);
-    node = node.next;
-}
 // @lc code=end
 
