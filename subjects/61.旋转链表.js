@@ -56,7 +56,45 @@
  * @param {number} k
  * @return {ListNode}
  *  方法一：快慢指针
- *  
+ *  思路： 利用快慢指针，找到链表的尾节点，然后根据k值，找到新的链表头节点，然后断开链表
+ *  复杂度：
+ *       时间复杂度：O(n)
+ *       空间复杂度：O(1)
+ *  代码：
+ *      var rotateRight = function(head, k) {
+ *          if (!head || !head.next || k === 0) return head;
+ *          
+ *          // Initialize pointers and find the length of the list
+ *          let fast = head, slow = head;
+ *          let length = 1; // Start with 1 to account for the head
+ *          while (fast.next) {
+ *              fast = fast.next;
+ *              length++;
+ *          }
+ *          
+ *          // Adjust k to avoid unnecessary cycles
+ *          k = k % length;
+ *          if (k === 0) return head; // No rotation needed
+ *          
+ *          // Reset fast to head and move it k steps ahead
+ *          fast = head;
+ *          for (let i = 0; i < k; i++) {
+ *              fast = fast.next;
+ *          }
+ *          
+ *          // Move both pointers until fast reaches the end
+ *          while (fast.next) {
+ *              slow = slow.next;
+ *              fast = fast.next;
+ *          }
+ *          
+ *          // Rearrange pointers to rotate the list
+ *          fast.next = head; // Close the loop
+ *          head = slow.next; // New head is slow.next
+ *          slow.next = null; // Break the loop
+ *          
+ *          return head;
+ *      };
  *  方法二：环形链表
  *  思路：将链表首尾相连，然后根据k值，找到新的链表头节点，然后断开链表
  *       问题：怎么找到新的链表头节点？
@@ -151,7 +189,53 @@
  *     console.log(head)
  *     rotateRight(head, 4);
  */
-var rotateRight = function (head, k) { 
+var rotateRight = function(head, k) {
+    if (!head || !head.next || k === 0) return head;
+    
+    // Initialize pointers and find the length of the list
+    let fast = head, slow = head;
+    let length = 1; // Start with 1 to account for the head
+    while (fast.next) {
+        fast = fast.next;
+        length++;
+    }
+    
+    // Adjust k to avoid unnecessary cycles
+    k = k % length;
+    if (k === 0) return head; // No rotation needed
+    
+    // Reset fast to head and move it k steps ahead
+    fast = head;
+    for (let i = 0; i < k; i++) {
+        fast = fast.next;
+    }
+    
+    // Move both pointers until fast reaches the end
+    while (fast.next) {
+        slow = slow.next;
+        fast = fast.next;
+    }
+    
+    // Rearrange pointers to rotate the list
+    fast.next = head; // Close the loop
+    head = slow.next; // New head is slow.next
+    slow.next = null; // Break the loop
+    
+    return head;
 };
+
+function ListNode (val) {
+    this.val = val;
+    this.next = null;
+}
+let head = new ListNode(1);
+let cur = head;
+[2, 3, 4, 5].forEach(item => {
+    let node = new ListNode(item);
+    cur.next = node;
+    cur = cur.next;
+});
+console.log(head)
+rotateRight(head, 2);
 // @lc code=end
 
