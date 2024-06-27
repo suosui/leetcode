@@ -12,7 +12,7 @@
  * Total Accepted:    427.8K
  * Total Submissions: 801.6K
  * Testcase Example:  '["LRUCache","put","put","get","put","get","put","get","get","get"]\n' +
-  '[[2],[1,1],[2,2],[1],[3,3],[2],[4,4],[1],[3],[4]]'
+    '[[2],[1,1],[2,2],[1],[3,3],[2],[4,4],[1],[3],[4]]'
  *
  * 请你设计并实现一个满足  LRU (最近最少使用) 缓存 约束的数据结构。
  * 
@@ -66,29 +66,88 @@
  * 最多调用 2 * 10^5 次 get 和 put
  * 
  * 
- */
+ *  方法一：Map+双向链表
+ *  思路：利用 Map 存储 key 和 Node 的映射关系，Node 是双向链表的节点，存储 key 和 value。
+ *  代码：
+ * 
+*       var Node = function (key, val) {
+*           this.val = val;
+*           this.key = key;
+*           this.next = null;
+*           this.pre = null;
+*       }
+*
+*       var LRUCache = function (capacity) {
+*           this.head = this.tail = new Node();
+*           this.capacity = capacity;
+*           this.hash = new Map();
+*           this.cnt = 0;
+*       };
+*
+*       LRUCache.prototype.get = function (key) {
+*           let node = this.hash.get(key);
+*           if (!node) {
+*               return -1;
+*           }
+*           if (this.head.next === node) return node.val;
+*       
+*           node.pre.next = node.next;
+*           if (node.next) {
+*               node.next.pre = node.pre;
+*           } else {
+*               this.tail = node.pre;
+*           }
+*       
+*           node.pre = this.head;
+*           node.next = this.head.next;
+*       
+*           this.head.next.pre = node;
+*           this.head.next = node;
+*       
+*           return node.val;
+*       };
+*
+*       LRUCache.prototype.put = function (key, value) {
+*           let val = this.get(key);
+*           if (val && val !== -1) {
+*               let node = this.hash.get(key);
+*               node.val = value;
+*       
+*               return;
+*           }
+*           if (this.cnt + 1 > this.capacity) {
+*               this.tail.pre.next = null;
+*               this.hash.delete(this.tail.key);
+*               this.tail = this.tail.pre;
+*           }
+*       
+*           node = new Node(key, value)
+*           this.hash.set(key, node);
+*           this.cnt++;
+*       
+*           if (!this.head.next) {
+*               this.head.next = node;
+*               node.pre = this.head;
+*               this.tail = node;
+*               return;
+*           }
+*       
+*           node.next = this.head.next;
+*           node.pre = this.head;
+*       
+*           this.head.next.pre = node;
+*           this.head.next = node;
+*       };
+*/
 
 // @lc code=start
-var Node = function (val, key) {
-    this.val = val;
-    this.key = key;
-}
-
-Node.prototype.next = function (node) {
-    this.next = node;
-}
-
-Node.prototype.pre = function (node) {
-    this.pre = node;
-}
+var Node = function (key, val) {
+};
 
 /**
  * @param {number} capacity
  */
 var LRUCache = function (capacity) {
-    this.head = this.tail = null;
-    this.capacity = capacity;
-    this.hash = new Map();
 };
 
 /** 
@@ -96,26 +155,6 @@ var LRUCache = function (capacity) {
  * @return {number}
  */
 LRUCache.prototype.get = function (key) {
-    const n = this.hash.get(key);
-    if (!n) return -1;
-    if (this.head.key === key) {
-        return this.head.val;
-    }
-    if (this.capacity === 1) {
-        return n.val;
-    }
-    const pre = n.pre || null;
-    const next = n.next || null;
-    if (pre) pre.next = next;
-    if (next) next.pre = pre;
-    n.next = this.head;
-    this.head.pre = n;
-    n.pre = null;
-    this.head = n;
-    if (this.tail && key === this.tail.key) {
-        this.tail = pre;
-    }
-    return n.val;
 };
 
 /** 
@@ -124,53 +163,6 @@ LRUCache.prototype.get = function (key) {
  * @return {void}
  */
 LRUCache.prototype.put = function (key, value) {
-    if (!this.head) {
-        const n = new Node(value, key);
-        this.head = this.tail = n;
-        this.hash.set(key, n);
-        return;
-    }
-    if (this.hash.has(key)) {
-        const n = this.hash.get(key);
-        n.val = value;
-        if (this.capacity === 1) {
-            return;
-        }
-        if (this.head.key !== key) {
-            const pre = n.pre || null;
-            const next = n.next || null;
-            if (pre) pre.next = next;
-            if (next) next.pre = pre;
-            n.next = this.head;
-            this.head.pre = n;
-            n.pre = null;
-            this.head = n;
-            if (this.tail && key === this.tail.key) {
-                this.tail = pre;
-            }
-        }
-        return;
-    }
-    const n = new Node(value, key);
-    if (this.hash.size === this.capacity) {
-        if (this.capacity === 1) {
-            this.head = this.tail = n;
-            this.hash.set(key, n);
-            return;
-        }
-        this.hash.delete(this.tail.key);
-        this.tail = this.tail.pre;
-        if (this.tail) this.tail.next = null;
-    }
-    if (this.capacity === 1) {
-        this.head = this.tail = n;
-        this.hash.set(key, n);
-        return;
-    }
-    n.next = this.head;
-    this.head.pre = n;
-    this.head = n;
-    this.hash.set(key, n);
 };
 /**
  * Your LRUCache object will be instantiated and called as such:
@@ -178,17 +170,5 @@ LRUCache.prototype.put = function (key, value) {
  * var param_1 = obj.get(key)
  * obj.put(key,value)
  */
-
-var obj = new LRUCache(1)
-console.log(obj.get(6))
-console.log(obj.get(8));
-obj.put(12, 1);
-console.log(obj.get(2));
-obj.put(15, 11);
-obj.put(5, 2);
-obj.put(1, 15);
-obj.put(4, 2);
-console.log(obj.get(5));
-obj.put(15, 15);
 // @lc code=end
 
