@@ -173,6 +173,7 @@
  *          for (let j = 0; j < m; j++) {
  *              for (let i = 0; i < n; i++) {
  *                  const keyAlready = `j${j}i${i}`;
+ *                  if (board[j][i] !== word[0]) continue;
  *                  const isExist = dfs(j, i, board[j][i], 0, [keyAlready]);
  *                  if (isExist) return true;
  *              }
