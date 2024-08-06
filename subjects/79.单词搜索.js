@@ -147,6 +147,38 @@
  *          }
  *          return false;
  *      };
+ *  优化版本：
+ *      var exist = function (board, word) {
+ *          const m = board.length;
+ *          const n = board[0].length;
+ *          var dfs = (j, i, preFix, idxOfWord, already) => {
+ *              if (preFix === word) return true;
+ *              const index = [
+ *                  [j, i - 1],
+ *                  [j, i + 1],
+ *                  [j - 1, i],
+ *                  [j + 1, i],
+ *              ];
+ *              for (let [newJ, newI] of index) {
+ *                  if (newJ < 0 || newJ >= m) continue;
+ *                  if (newI < 0 || newI >= n) continue;
+ *                  if (board[newJ][newI] !== word[idxOfWord + 1]) continue;
+ *                  const keyAlready = `j${newJ}i${newI}`;
+ *                  if (already.indexOf(keyAlready) > -1) continue;
+ *                  const isExist = dfs(newJ, newI, preFix + board[newJ][newI], idxOfWord + 1, [...already, keyAlready]);
+ *                  if (isExist) return true;
+ *              }
+ *              return false;
+ *          }
+ *          for (let j = 0; j < m; j++) {
+ *              for (let i = 0; i < n; i++) {
+ *                  const keyAlready = `j${j}i${i}`;
+ *                  const isExist = dfs(j, i, board[j][i], 0, [keyAlready]);
+ *                  if (isExist) return true;
+ *              }
+ *          }
+ *          return false;
+ *      };
  */
 var exist = function (board, word) {
 };
