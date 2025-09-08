@@ -119,6 +119,31 @@
  *         }
  *         return r + 1;
  *     };
+ * 方法2：双指针
+ * 过程：
+ *    1. 先从左边开始遍历，找到nums[l] === val的数。
+ *    2. 找到nums[l] === val的数了。
+ *    3. 再从右边开始遍历，找到nums[r] !== val的数。
+ *    4. 找到nums[r] !== val的数了。
+ *    5. 交换 nums[r], nums[l]。
+ *    7. 直到l<=r。
+ * 代码：
+ *    var removeElement = function (nums, val) {
+ *        let r = nums.length - 1;
+ *        let l = 0;
+ *        while (l <= r) {
+ *            if (nums[l] !== val) {
+ *                l++;
+ *            } else if (nums[r] === val) {
+ *                r--;
+ *            } else {
+ *                nums[l] = nums[r];
+ *                l++;
+ *                r--;
+ *            }
+ *        }
+ *        return l;
+ *    };   
  **/
 var removeElement = function (nums, val) {
 };
